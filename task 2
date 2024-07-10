@@ -1,0 +1,188 @@
+pip install pandas
+import pandas as pd
+
+# Read a CSV file
+df = pd.read_csv('data.csv')
+
+# Display the first few rows of the DataFrame
+print("First few rows of the DataFrame:")
+print(df.head())
+# View the first few rows
+print(df.head())
+
+# View the last few rows
+print(df.tail())
+
+# Get a summary of the DataFrame
+print(df.info())
+
+# Get summary statistics
+print(df.describe())
+# Select a single column
+age_column = df['Age']
+print(age_column)
+
+# Select multiple columns
+selected_columns = df[['Name', 'Salary']]
+print(selected_columns)
+# Add a new column
+df['Salary After Tax'] = df['Salary'] * 0.7
+print(df.head())
+# Rename columns
+df.rename(columns={'Salary': 'Annual Salary'}, inplace=True)
+print(df.head())
+# Drop a column
+df = df.drop(columns=['Salary After Tax'])
+print(df.head())
+import pandas as pd
+
+# Step 1: Read the CSV file
+df = pd.read_csv('data.csv')
+
+# Step 2: Display basic information about the DataFrame
+print("First few rows of the DataFrame:")
+print(df.head())
+
+print("\nSummary of the DataFrame:")
+print(df.info())
+
+print("\nSummary statistics of the DataFrame:")
+print(df.describe())
+
+# Step 3: Select and display specific columns
+age_column = df['Age']
+print("\nAge column:")
+print(age_column)
+
+selected_columns = df[['Name', 'Salary']]
+print("\nSelected columns (Name and Salary):")
+print(selected_columns)
+
+# Step 4: Add a new column
+df['Salary After Tax'] = df['Salary'] * 0.7
+print("\nDataFrame with new column (Salary After Tax):")
+print(df.head())
+
+# Step 5: Rename a column
+df.rename(columns={'Salary': 'Annual Salary'}, inplace=True)
+print("\nDataFrame with renamed column (Annual Salary):")
+print(df.head())
+
+# Step 6: Drop a column
+df = df.drop(columns=['Salary After Tax'])
+print("\nDataFrame after dropping the 'Salary After Tax' column:")
+print(df.head())
+import pandas as pd
+
+# Sample DataFrame with missing values
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Age': [24, None, 22, 32, 29],
+    'Salary': [50000, 60000, None, 65000, 62000]
+}
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+# Fill missing values with a specific value (e.g., 0)
+df_filled_zero = df.fillna(0)
+print("\nDataFrame after filling missing values with 0:")
+print(df_filled_zero)
+
+# Fill missing values with the mean of the column
+df_filled_mean = df.fillna(df.mean(numeric_only=True))
+print("\nDataFrame after filling missing values with the mean:")
+print(df_filled_mean)
+
+# Fill missing values with the median of the column
+df_filled_median = df.fillna(df.median(numeric_only=True))
+print("\nDataFrame after filling missing values with the median:")
+print(df_filled_median)
+
+# Fill missing values with the mode of the column
+df_filled_mode = df.fillna(df.mode().iloc[0])
+print("\nDataFrame after filling missing values with the mode:")
+print(df_filled_mode)
+# Drop rows with any missing values
+df_dropped_rows = df.dropna()
+print("\nDataFrame after dropping rows with any missing values:")
+print(df_dropped_rows)
+
+# Drop columns with any missing values
+df_dropped_columns = df.dropna(axis=1)
+print("\nDataFrame after dropping columns with any missing values:")
+print(df_dropped_columns)
+# Sample DataFrame with duplicates
+data_with_duplicates = {# Remove duplicate rows
+df_no_duplicates = df_with_duplicates.drop_duplicates()
+print("\nDataFrame after removing duplicate rows:")
+print(df_no_duplicates)
+import pandas as pd
+
+# Step 1: Create a sample DataFrame with missing values and duplicates
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Bob', 'Alice'],
+    'Age': [24, None, 22, 32, 29, 27, 24],
+    'Salary': [50000, 60000, None, 65000, 62000, 60000, 50000]
+}
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+
+# Step 2: Handle missing values
+
+# Fill missing values with the mean of the column
+df_filled_mean = df.fillna(df.mean(numeric_only=True))
+print("\nDataFrame after filling missing values with the mean:")
+print(df_filled_mean)
+
+# Drop rows with any missing values
+df_dropped_rows = df.dropna()
+print("\nDataFrame after dropping rows with any missing values:")
+print(df_dropped_rows)
+
+# Step 3: Remove duplicate rows
+df_no_duplicates = df.drop_duplicates()
+print("\nDataFrame after removing duplicate rows:")
+print(df_no_duplicates)
+import pandas as pd
+
+# Sample DataFrame
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Age': [24, 27, 22, 32, 29],
+    'Salary': [50000, 60000, 55000, 65000, 62000]
+}
+df = pd.DataFrame(data)
+
+# Filter rows where Age is greater than 25
+filtered_df = df[df['Age'] > 25]
+print("Filtered DataFrame where Age > 25:")
+print(filtered_df)
+# Sort the DataFrame by Age in ascending order
+sorted_df_asc = df.sort_values(by='Age', ascending=True)
+print("\nDataFrame sorted by Age in ascending order:")
+print(sorted_df_asc)
+
+# Sort the DataFrame by Salary in descending order
+sorted_df_desc = df.sort_values(by='Salary', ascending=False)
+print("\nDataFrame sorted by Salary in descending order:")
+print(sorted_df_desc)
+# Sample DataFrame with an additional 'Department' column
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Age': [24, 27, 22, 32, 29],
+    'Salary': [50000, 60000, 55000, 65000, 62000],
+    'Department': ['HR', 'IT', 'HR', 'Finance', 'IT']
+}
+df = pd.DataFrame(data)
+
+# Group the DataFrame by Department and calculate the average Salary
+grouped_df = df.groupby('Department').agg({'Salary': 'mean'})
+print("\nGrouped DataFrame with average Salary by Department:")
+print(grouped_df)
+
+# Group the DataFrame by Department and count the number of employees in each department
+count_df = df.groupby('Department').size().reset_index(name='Count')
+print("\nGrouped DataFrame with employee count by Department:")
+print(count_df)
+
