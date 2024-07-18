@@ -1,0 +1,33 @@
+import requests
+from bs4 import BeautifulSoup
+
+# URL of the web page you want to scrape
+url = 'https://example.com'
+
+# Send a GET request to the web page
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Parse the content of the web page
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Extract the title of the web page
+    title = soup.title.string
+    print(f'Title: {title}')
+
+    # Extract all the text from the web page
+    text = soup.get_text()
+    print(f'Text: {text[:200]}...')  # Printing first 200 characters of text
+
+    # Extract all the links from the web page
+    links = soup.find_all('a')
+    for link in links:
+        print(f'Link: {link.get("href")}')
+
+    # Extract all the images from the web page
+    images = soup.find_all('img')
+    for img in images:
+        print(f'Image: {img.get("src")}')
+else:
+    print(f'Failed to retrieve the web page. Status code: {response.status_code}')
